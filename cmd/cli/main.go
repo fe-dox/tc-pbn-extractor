@@ -67,7 +67,6 @@ func main() {
 	}
 
 	if output == "" {
-		log.Printf("output %s\n", output)
 		output = fmt.Sprintf("%s.pbn", settings.EventName)
 	}
 
