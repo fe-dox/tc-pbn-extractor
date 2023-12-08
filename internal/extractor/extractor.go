@@ -51,7 +51,7 @@ func (e *Extractor) ExtractSettingsFromUrl(baseUrl string) (TournamentSettings, 
 		return TournamentSettings{}, err
 	}
 	if response.StatusCode != http.StatusOK {
-		return TournamentSettings{}, ErrUnexpectedStatusCode
+		return TournamentSettings{}, ErrSettingsFileNotFound
 	}
 
 	defer response.Body.Close()

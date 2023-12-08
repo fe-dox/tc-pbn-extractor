@@ -4,14 +4,15 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/fe-dox/go-pbn"
-	"github.com/fe-dox/tc-pbn-extractor/internal/extractor"
 	"log"
 	"net/url"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/fe-dox/go-pbn"
+	"github.com/fe-dox/tc-pbn-extractor/internal/extractor"
 )
 
 func main() {
@@ -66,6 +67,7 @@ func main() {
 	}
 
 	if output == "" {
+		log.Printf("output %s\n", output)
 		output = fmt.Sprintf("%s.pbn", settings.EventName)
 	}
 
@@ -127,7 +129,7 @@ func main() {
 		}
 		for _, board := range boardResults.Board {
 			if splitOnDiscontinuation && !writeToStdOut {
-				if prevBoardNumber >= board.Number {
+				if prevBoardNumber > board.Number {
 					err := w.Close()
 					if err != nil {
 						log.Fatalf("Failed to close file: %v\n", err)
